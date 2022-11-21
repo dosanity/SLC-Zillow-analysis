@@ -71,7 +71,7 @@ We also looked into the correlation between the list price of the homes and the 
 
 ## GeoSpatial Analysis
 
-![SLC Real Estate](https://user-images.githubusercontent.com/29410712/203021801-07ac910a-d164-4426-b9c7-52261e89dc1c.png)
+![saltlakecounty](https://user-images.githubusercontent.com/29410712/203025173-c9d20a7f-1f18-4fc2-b74d-fd294df3de28.png)
 
 ![Price Heat Map](https://user-images.githubusercontent.com/29410712/203021376-8a353e56-80d3-4256-b7b1-59b43c6901c6.png)
 
