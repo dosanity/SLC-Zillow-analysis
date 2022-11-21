@@ -87,6 +87,53 @@ From the price heat map of Salt Lake County, we can see that a majority of the h
 
 In the sqft heat map of Salt Lake County, we can see that the real estate properties with more square feet are located on the east and south-west sides of the Salt Lake Valley which is understandable since the locations are further away from the city center.
 
-## Machine Learning Algorithms
+## Linear Regression
 
-#### Linear Regression
+#### Ordinary Least Squares Assumptions:
+
+1. Standard Errors assume that the covariance matrix of the errors is correctly specified.
+2. The condition number is large, 1.22e+03. This might indicate that there are strong multicollinearity or other numerical problems.
+3. The linear regression model is “linear in parameters.”
+4. There is a random sampling of observations.
+5. There is homoscedasticity and no autocorrelation.
+
+We now develop a multilinear regression model for real estate property prices in the Salt Lake County. We could use this to come up with a price for properties coming on the market. Our model is now in the form:
+
+$$
+  Y = β_0 + β_1x_1 + β_2x_2 + β_3x_3\ ... β_nx_n + ε
+$$
+
+where $x_n$ are predictive variables.
+
+```
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  price   R-squared:                       0.640
+Model:                            OLS   Adj. R-squared:                  0.639
+Method:                 Least Squares   F-statistic:                     872.9
+Date:                Mon, 21 Nov 2022   Prob (F-statistic):               0.00
+Time:                        02:36:54   Log-Likelihood:                -26554.
+No. Observations:                1972   AIC:                         5.312e+04
+Df Residuals:                    1967   BIC:                         5.315e+04
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept   1.024e+05   1.28e+04      7.974      0.000    7.72e+04    1.28e+05
+sqft         180.8805      5.669     31.907      0.000     169.763     191.998
+beds       -8116.8371   3965.622     -2.047      0.041   -1.59e+04    -339.575
+baths       2.722e+04   5920.118      4.598      0.000    1.56e+04    3.88e+04
+proptype    4.042e+04   9865.190      4.097      0.000    2.11e+04    5.98e+04
+==============================================================================
+Omnibus:                      882.045   Durbin-Watson:                   1.447
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             7474.571
+Skew:                           1.898   Prob(JB):                         0.00
+Kurtosis:                      11.750   Cond. No.                     9.78e+03
+==============================================================================
+```
+
+In the multiple linear regression model, the intercept of the regression is 102,400 and the R-squared is 0.640. The R-squared is the proportion of the variation in the dependent variable that is predictable from the independent variable. This means that around 64.0% of the variability observed in the target variable is explained by this regression model. Additionally, all the variables are statistically significant at an alpha of 5% and can be used to predict the listed price of the real estate property. With further clarification, as the sqft of the real estate property and the number of baths increase by one, the price increases by $180.89 and $27,220, respectively. Moreover, as the number of bedrooms increase by one, the price actually decreases by $8,116. We can also see that if the real estate property is a Single Family Home, it increases the price of the property. 
+
+## Unsupervised Machine Learning Algorithms (Deeper Analysis)
+
