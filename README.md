@@ -135,5 +135,46 @@ Kurtosis:                      11.750   Cond. No.                     9.78e+03
 
 In the multiple linear regression model, the intercept of the regression is 102,400 and the R-squared is 0.640. The R-squared is the proportion of the variation in the dependent variable that is predictable from the independent variable. This means that around 64.0% of the variability observed in the target variable is explained by this regression model. Additionally, all the variables are statistically significant at an alpha of 5% and can be used to predict the listed price of the real estate property. With further clarification, as the sqft of the real estate property and the number of baths increase by one, the price increases by $180.89 and $27,220, respectively. Moreover, as the number of bedrooms increase by one, the price actually decreases by $8,116. We can also see that if the real estate property is a Single Family Home, it increases the price of the property. 
 
-## Unsupervised Machine Learning Algorithms (Deeper Analysis)
+## Machine Learning Algorithms (Deeper Analysis)
+
+For this analysis, we will be using Principle Component Analysis, K-Means Clustering, Hierarchical Clustering, and DBSCAN to understand how the prices, sqft, and cost per sqft differ between zipcodes.
+
+### Principal Component Analysis (PCA)
+
+Principal Component Analysis (PCA) is one of the most used unsupervised machine learning algorithms across a variety of applications: exploratory data analysis, dimensionality reduction, information compression, and data de-noising. PCA is a dimensionality reduction technique that transforms a set of features in a dataset into a smaller number of features called principal components while at the same time trying to retain as much information in the original dataset as possible. Since we have 3 different variables, we have a three-dimensional data set. PCA can take 4 or more variables and make a two-dimensional PCA plot. PCA can also tell us which variable is the most valuable for clustering the data. It also can tell us how accurate the two-dimensional graph is.
+
+Principal Component Analysis calculates the average of each variable and using this average, finds the center of the data. It then shifts the data so that the center of the data is at the origin. From here, we input principal components. The principal components are vectors, but they are not chosen at random. The first principal component (PC1) is computed so that it explains the greatest amount of variance in the original features. Thus, it minimizes the distance between each data point on the graph (Sum of Squared) so PC1 is a linear combination of variables. 
+
+It uses a scaled vector called the "Eigenvector" or "Singular Vector" for PC1. The sum of squared distances for the best fit line is the Eigenvalue for PC1. The second component (PC2) is orthogonal to the first, and it explains the greatest amount of variance left after the first principal component. Then we find PC3 which is perpendicular to PC1 and PC2 that goes through the origin. The number of PCs is either the number of variables or the number of samples, whichever is smaller.
+
+![PCA](https://user-images.githubusercontent.com/29410712/203155568-68b4015c-9f68-4087-bbb6-0a44f0228fe0.png)
+
+Once all the principal components are figured out, you can use the eigenvalues to determine the proportion of variation that each PC accounts for. Then you can create a scree plot which is a graphical representation of the percentages of variation that each PC accounts for.
+
+![scree-plot](https://user-images.githubusercontent.com/29410712/203156920-bd6d95ed-678d-4a91-8358-fe9daf9a9cdf.png)
+
+In this scree plot, we can see that PC1 and PC2 account for the vast majority of the variation. This means that a two-dimensional graph, using just PC1 and PC2 would be a good approximation of this three-dimensional graph since it would account for 99.22% of the variation in the data. Also, a one-dimensional graph would account for 59.98% of the variation in the data.
+
+### K-Means Cluster Analysis
+
+K-means cluster identifies initial clusters and calculates the variances between each cluster or the Euclidean distance. It clusters all the remaining points, calculates the mean of each cluster, and then reclusters based on the new means. It repeats until the clusters no longer change. It restarts the cluster until it finds the best overall cluster. It does as much reclustering as we tell it to do. It then comes back and returns to the optimal one.
+
+![Different K-Means](https://user-images.githubusercontent.com/29410712/203158939-fde4b778-24a9-4949-b8a5-51a517d1fded.png)
+
+First we need to determine the best K value. An easy method for determining the best number for K is the elbow curve. To create an elbow curve, we'll plot the clusters on the x-axis and the values of a selected objective function on the y-axis. The intra-cluster distance is one of the most common objective functions to use when creating an elbow curve. The intra-cluster distance objective function is measuring the amount of variation in the dataset. For our elbow curve, we will plot the number of clusters (also known as the values of K) on the x-axis and the total intra-cluster distance values on the y-axis.
+
+![Intra-Cluster-Distance](https://user-images.githubusercontent.com/29410712/203158951-caf2a648-746a-4908-9cd1-a423b225d669.png)
+
+Using the "elbow" or "knee of a curve" as a cutoff point is a common heuristic in mathematical optimization to choose a point where diminishing returns are no longer worth the additional cost. In clustering, this means one should choose a number of clusters so that adding another cluster doesn't give much better modeling of the data. The intuition is that increasing the number of clusters will naturally improve the fit (explain more of the variation), since there are more parameters (more clusters) to use, but that at some point this is over-fitting, and the elbow reflects this. We can see that the total intra-cluster distance is large for k = 1 and decreases as we increase k, until k = 6, after which it tapers off and gets only marginally smaller. The slope becomes constant after k = 6. This indicates that k = 6 is a good choice. Therefore, will now cluster the states into six clusters using K-means. 
+
+![K-Mean](https://user-images.githubusercontent.com/29410712/203157630-3e2f35b9-9fe7-4717-bb06-4335d841c807.png)
+
+| Clusters    | Zipcodes   |
+| ----------- | -----------|
+| 1           | 84020, 84092, 84121, 84093, 84095, 84065, 84096 |
+| 2           | 84009, 84094, 84088, 84081, 84084, 84047, 84128, 84120, 84070, 84044, 84129 |
+| 3           | 84106, 84102, 84115 |
+| 4           | 84101, 84111 |
+| 5           | 84105, 84108, 84117, 84109, 84124, 84103 |
+| 6           | 84107, 84116, 84118, 84104, 84119, 84123 |
 
