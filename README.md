@@ -145,6 +145,8 @@ Principal Component Analysis (PCA) is one of the most used unsupervised machine 
 
 > Python Code:
 ```
+from sklearn.decomposition import PCA
+
 pca_model = PCA(n_components=3)
 X_PCA = pca_model.fit_transform(X)
 df_plot = pd.DataFrame(X_PCA, columns=['PC1', 'PC2', 'PC3'])
@@ -198,3 +200,34 @@ Using the "elbow" or "knee of a curve" as a cutoff point is a common heuristic i
 By applying the K-means to the Principal Component Analysis projection data, this produces an additional categorical constraint to validate the clustering algorithm. In other words, we can use dimensionality reduction as a feature extractor and reveal the different clusters. Based on the updated PCA plot with the clustering, it is consistent with the clustering with the points split into six sections:
 
 ![K-Mean-PCA](https://user-images.githubusercontent.com/29410712/203165056-6b1c828b-6dcc-492f-b01e-61d6f91e2077.png)
+
+### Hierarchical Cluster Analysis
+
+Similar to K-means clustering, hierarchical clustering, also known as agglomerative clustering, works with groups (clusters) of data points. The algorithm starts by declaring each point with its own cluster, then merges the two most similar clusters until a declared stopping point has been reached. Hierarchical clustering is often associated with heatmaps and organizes the rows and columns based on similarity. This makes it easy to see correlations in the data.
+
+![dendogram](https://user-images.githubusercontent.com/29410712/203176302-a42e2a89-f66e-4ade-809a-0b36ba9f99f4.png)
+
+Additionally, we created a dendogram to know how many clusters to make. A dendrogram is a graph that keeps the values of the points on the x-axis, then connects all the points as they are clustered. This is similar to the elbow curve, as it gives us a better idea of the ideal amount of clusters we want to use. Based on the dendogram above, we will now use hierarchical clustering with complete linkage and Euclidean distance to sort the zipcodes into six clusters. 
+
+> Python Code:
+```
+from sklearn.cluster import AgglomerativeClustering
+
+fig,ax1 = plt.subplots(figsize=(10, 6))
+agg_cluster_model = AgglomerativeClustering(linkage="complete", affinity='euclidean', n_clusters=6)
+y_pred = agg_cluster_model.fit_predict(X)
+
+plt.scatter(X[:, 0], X[:, 1], c=y_pred,  marker="o")
+for i,name in enumerate(summary['zipcode'].values):
+    ax1.annotate(name, (X[i,0], X[i,1]), ha='center',fontsize=10)
+```
+
+![Hierarchical](https://user-images.githubusercontent.com/29410712/203176736-5c797f25-067d-4624-b98f-dbac6299a9b9.png)
+
+### Hierarchical Clustering with Principal Component Analysis
+
+By applying the Hierarichical Clustering to the Principal Component Analysis projection data, this produces an additional categorical constraint to validate the clustering algorithm. In other words, we can use dimensionality reduction as a feature extractor and reveal the different clusters. Based on the updated PCA plot with the clustering, it is consistent with the clustering with the points split into six sections:
+
+![Hierarchical-PCA](https://user-images.githubusercontent.com/29410712/203176836-ca08d232-3bc9-4626-bfae-3cbb8d0ee762.png)
+
+
