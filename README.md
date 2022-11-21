@@ -71,3 +71,12 @@ We also looked into the correlation between the list price of the homes and the 
 
 ## GeoSpatial Analysis
 
+![SLC Real Estate](https://user-images.githubusercontent.com/29410712/203021801-07ac910a-d164-4426-b9c7-52261e89dc1c.png)
+
+![Price Heat Map](https://user-images.githubusercontent.com/29410712/203021376-8a353e56-80d3-4256-b7b1-59b43c6901c6.png)
+
+![Sqft Heat Map](https://user-images.githubusercontent.com/29410712/203021397-f9a790c7-c4cd-484c-9062-64cfc847c19e.png)
+
+
+
+
