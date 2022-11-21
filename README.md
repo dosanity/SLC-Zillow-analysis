@@ -195,6 +195,6 @@ Using the "elbow" or "knee of a curve" as a cutoff point is a common heuristic i
 
 ### K-Means Clustering with Principal Component Analysis
 
-By applying the K-means to the Principal Component Analysis projection data, this produces an additional categorical constraint to validate the clustering algorithm. In other words, we can use dimensionality reduction as a feature extractor and reveal the different clusters.
+By applying the K-means to the Principal Component Analysis projection data, this produces an additional categorical constraint to validate the clustering algorithm. In other words, we can use dimensionality reduction as a feature extractor and reveal the different clusters. Based on the updated PCA plot with the clustering, it is consistent with the clustering with the points split into six sections:
 
 ![K-Mean-PCA](https://user-images.githubusercontent.com/29410712/203165056-6b1c828b-6dcc-492f-b01e-61d6f91e2077.png)
