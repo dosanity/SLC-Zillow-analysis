@@ -224,6 +224,15 @@ for i,name in enumerate(summary['zipcode'].values):
 
 ![Hierarchical](https://user-images.githubusercontent.com/29410712/203176736-5c797f25-067d-4624-b98f-dbac6299a9b9.png)
 
+| Clusters    | Zipcodes   |
+| ----------- | -----------|
+| 1           | 84020, 84092, 84121, 84093, 84095, 84065, 84109, 84096 |
+| 2           | 84009, 84094, 84088, 84081, 84084, 84047, 84128, 84120, 84070, 84044, 84129 |
+| 3           | 84106, 84102, 84115 |
+| 4           | 84101, 84111 |
+| 5           | 84105, 84108, 84117, 84124, 84103 |
+| 6           | 84107, 84116, 84118, 84104, 84119, 84123 |
+
 ### Hierarchical Clustering with Principal Component Analysis
 
 By applying the Hierarichical Clustering to the Principal Component Analysis projection data, this produces an additional categorical constraint to validate the clustering algorithm. In other words, we can use dimensionality reduction as a feature extractor and reveal the different clusters. Based on the updated PCA plot with the clustering, it is consistent with the clustering with the points split into six sections:
