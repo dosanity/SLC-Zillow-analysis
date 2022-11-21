@@ -143,6 +143,21 @@ For this analysis, we will be using Principle Component Analysis, K-Means Cluste
 
 Principal Component Analysis (PCA) is one of the most used unsupervised machine learning algorithms across a variety of applications: exploratory data analysis, dimensionality reduction, information compression, and data de-noising. PCA is a dimensionality reduction technique that transforms a set of features in a dataset into a smaller number of features called principal components while at the same time trying to retain as much information in the original dataset as possible. Since we have 3 different variables, we have a three-dimensional data set. PCA can take 4 or more variables and make a two-dimensional PCA plot. PCA can also tell us which variable is the most valuable for clustering the data. It also can tell us how accurate the two-dimensional graph is.
 
+> Python Code:
+```
+pca_model = PCA(n_components=3)
+X_PCA = pca_model.fit_transform(X)
+df_plot = pd.DataFrame(X_PCA, columns=['PC1', 'PC2', 'PC3'])
+df_plot.head()
+fig,ax1 = plt.subplots(figsize=(10, 6))
+
+ax1.set_xlim(X_PCA[:,0].min()-1,X_PCA[:,0].max()+1)
+ax1.set_ylim(X_PCA[:,1].min()-1,X_PCA[:,1].max()+1)
+
+for i,name in enumerate(summary['zipcode'].values):
+    ax1.annotate(name, (X_PCA[i,0], X_PCA[i,1]), ha='center',fontsize=10)
+```
+
 Principal Component Analysis calculates the average of each variable and using this average, finds the center of the data. It then shifts the data so that the center of the data is at the origin. From here, we input principal components. The principal components are vectors, but they are not chosen at random. The first principal component (PC1) is computed so that it explains the greatest amount of variance in the original features. Thus, it minimizes the distance between each data point on the graph (Sum of Squared) so PC1 is a linear combination of variables. 
 
 It uses a scaled vector called the "Eigenvector" or "Singular Vector" for PC1. The sum of squared distances for the best fit line is the Eigenvalue for PC1. The second component (PC2) is orthogonal to the first, and it explains the greatest amount of variance left after the first principal component. Then we find PC3 which is perpendicular to PC1 and PC2 that goes through the origin. The number of PCs is either the number of variables or the number of samples, whichever is smaller.
@@ -178,3 +193,8 @@ Using the "elbow" or "knee of a curve" as a cutoff point is a common heuristic i
 | 5           | 84105, 84108, 84117, 84109, 84124, 84103 |
 | 6           | 84107, 84116, 84118, 84104, 84119, 84123 |
 
+### K-Means Clustering with Principal Component Analysis
+
+By applying the K-means to the Principal Component Analysis projection data, this produces an additional categorical constraint to validate the clustering algorithm. In other words, we can use dimensionality reduction as a feature extractor and reveal the different clusters.
+
+![K-Mean-PCA](https://user-images.githubusercontent.com/29410712/203165056-6b1c828b-6dcc-492f-b01e-61d6f91e2077.png)
