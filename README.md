@@ -162,14 +162,14 @@ for i,name in enumerate(summary['zipcode'].values):
 
 Principal Component Analysis calculates the average of each variable and using this average, finds the center of the data. It then shifts the data so that the center of the data is at the origin. From here, we input principal components. The principal components are vectors, but they are not chosen at random. The first principal component (PC1) is computed so that it explains the greatest amount of variance in the original features. Thus, it minimizes the distance between each data point on the graph (Sum of Squared) so PC1 is a linear combination of variables. 
 
-In order to maximize variance, the first weight vector $w_{(1)}$ thus has to satisfy
+In order to maximize variance, the first weight vector $w_{(1)}$ thus has to satisfy:
 
 $$
   w_{(1)} = \text{arg } \displaystyle{\max_{||w|| = 1}} \left( \sum_{i} {(t_1)}^2_{(i)} \right) = 
             \text{arg } \displaystyle{\max_{||w|| = 1}} \left( \sum_{i} {(x_{(i)} * w)}^2 \right)
 $$
 
-Since $w_{(1)}$ has been defined to be a unit vector, it equivalently also satisfies
+Since $w_{(1)}$ has been defined to be a unit vector, it equivalently also satisfies:
 
 $$
   w_{(1)} = \text{arg max} \left( \frac{w^TX^TXw}{w^Tw} \right)
@@ -177,14 +177,15 @@ $$
 
 The quantity to be maximised can be recognised as a Rayleigh quotient. A standard result for a positive semidefinite matrix such as $X^TX$ is that the quotient's maximum possible value is the largest eigenvalue of the matrix, which occurs when $w$ is the corresponding eigenvector.
 
-In our analysis, we require more than one component. The $k^{th}$ component can be found by subtracting the first $k − 1$ principal components from $X$:
-
-\sum_{i} {(x_{(i)} * w)}^2 \right)
-  \hat{X}_k = X \sum_{s=1}^{k-1}{Xw_{(s)}w_{(s)^T}}
+In our analysis, we require more than one component. The $k^{th}$ component can be found by subtracting the first $k − 1$ principal components from $X$ and then finding the weight vector which extracts the maximum variance from this new data matrix:
 
 $$
-  w_{(k)} = \text{arg } \displaystyle{\max_{||w|| = 1}} \left( ||\hat{X}_{k}w||^2 \right) = 
-            \text{arg max} \left( \frac{w^T\hat{X}_k^T\hat{X}_kw}{w^Tw} \right)
+  \hat X_k = X - \sum_{s=1}^{k-1}{Xw_{(s)}w_{(s)}^T}
+$$
+  
+$$
+  w_{(k)} = \text{arg } \displaystyle{\max_{||w|| = 1}} \left( ||\hat X_{k}w||^2 \right) = 
+            \text{arg max} \left( \frac{w^T\hat X_k^T\hat X_kw}{w^Tw} \right)
 $$
 
 The sum of squared distances for the best fit line is the eigenvalue for PC1. The second component (PC2) is orthogonal to the first, and it explains the greatest amount of variance left after the first principal component. Then we find PC3 which is perpendicular to PC1 and PC2 that goes through the origin. The number of PCs is either the number of variables or the number of samples, whichever is smaller.
