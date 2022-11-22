@@ -194,7 +194,7 @@ The sum of squared distances for the best fit line is the eigenvalue for PC1. Th
 
 Once all the principal components are figured out, you can use the eigenvalues to determine the proportion of variation that each PC accounts for. Then you can create a scree plot which is a graphical representation of the percentages of variation that each PC accounts for.
 
-![scree-plot](https://user-images.githubusercontent.com/29410712/203156920-bd6d95ed-678d-4a91-8358-fe9daf9a9cdf.png)
+![scree-plot](https://user-images.githubusercontent.com/29410712/203187782-514206c0-9198-4339-8c68-f7837bd136a8.png)
 
 In this scree plot, we can see that PC1 and PC2 account for the vast majority of the variation. This means that a two-dimensional graph, using just PC1 and PC2 would be a good approximation of this three-dimensional graph since it would account for 99.22% of the variation in the data. Also, a one-dimensional graph would account for 59.98% of the variation in the data.
 
