@@ -8,7 +8,8 @@ After gathering the data, we will create different visualizations with geospatia
 
 ## Resources
 
-+ Analysis Software: `Jupyter Notebook 6.4.12`, `Python 3.10`
++ Analysis Software: `Jupyter Notebook 6.4.12`
++ Programming Languages: `Python 3.10`
 + Data Source: `ZillowData.csv` - [Zillow.com](https://www.zillow.com)
 
 ## Webscraping Process
